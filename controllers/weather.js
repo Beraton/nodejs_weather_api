@@ -9,11 +9,11 @@ const influx = new Influx.InfluxDB({
     // options: ,
     username: argv.u,
     password: argv.p,
-    database: 'weather',
+    database: 'environmental_db',
 })
 
 const getAllWeather = (req, res) => {
-    influx.query("SELECT mean_temperature/100,mean_humidiity/1024,mean_pressure/24902,mean_light FROM one_year.pogoda_30m tz('Europe/Warsaw')").then(results => {
+    influx.query("SELECT mean_temperature/100,mean_humidity/1024,mean_pressure/24902,mean_light FROM one_year.OSW1_station tz('Europe/Warsaw')").then(results => {
         /* Example of failed query */
         //influx.query('SELECT tx FROM pogoda limit 10').then(results => {
         if (!results.groupRows[0]) {
@@ -24,7 +24,7 @@ const getAllWeather = (req, res) => {
 }
 
 const getWeeklyWeather = (req, res) => {
-    influx.query("SELECT mean_temperature/100,mean_humidiity/1024,mean_pressure/24902,mean_light FROM one_year.pogoda_30m WHERE time >= now() - 7d tz('Europe/Warsaw')").then(results => {
+    influx.query("SELECT mean_temperature/100,mean_humidity/1024,mean_pressure/24902,mean_light FROM one_year.OSW1_station WHERE time >= now() - 7d tz('Europe/Warsaw')").then(results => {
         //influx.query("SELECT temperature/100,humidity/1024,pressure/24902,light FROM pogoda WHERE time >= now() - 7d tz('Europe/Warsaw')").then(results => {
         /* Example of failed query */
         //influx.query('SELECT tx FROM pogoda limit 10').then(results => {

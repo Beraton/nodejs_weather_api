@@ -4,12 +4,7 @@ const { argv } = require('../app')
 const influx = new Influx.InfluxDB({
     host: argv.i,
     port: argv.P,
-    //TODO: How to enable HTTPS?
-    // protocol: 'https',
-    // options: ,
-    username: argv.u,
-    password: argv.p,
-    database: 'environmental_db',
+    database: 'environmental_db'
 })
 
 const getAllWeather = (req, res) => {

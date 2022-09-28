@@ -1,14 +1,24 @@
 # NodeJS Weather API
 
+** Important note **
+
+In the project home directory create file `config.yaml` which defines InfluxDB IP address and port in the given format:
+
+```yaml
+IP:
+  <IPv4_ADDR>
+PORT:
+  <PORT>
 ```
-Usage: node app.js -l [listen_port] -i [influx_ip] -P [influx_port] -u [influx_user] -p [influx_pass]
+
+Otherwise, default values of will be used (IP: localost, PORT: 8086)
+
+```
+Usage: node app.js --config <conf-file> -l [api_port]
 
 Options:
       --help        Show help                                             [boolean]
       --version     Show version number                                   [boolean]
-  -i, --ip          InfluxDB server IP                                   [required]
-  -P, --port        InfluxDB server port                                 [required]
+      --config                               [default: "IP: localhost, PORT: 8086"]
   -l                                                                 [default:5000]
-  -u, --username    InfluxDB authentication username                     [optional]
-  -p, --password    InfluxDB authentication password                     [optional]
 ```

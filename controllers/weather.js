@@ -2,8 +2,8 @@ const Influx = require('influx');
 const { argv } = require('../app')
 
 const influx = new Influx.InfluxDB({
-    host: argv.i,
-    port: argv.P,
+    host: argv.IP,
+    port: argv.PORT,
     database: 'environmental_db'
 })
 

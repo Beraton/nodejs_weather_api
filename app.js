@@ -1,18 +1,22 @@
-const express = require('express');
+const express = require('express')
+const findup = require('findup-sync')
+const fs = require('fs')
+
 const app = express()
+const yaml = require('yaml')
+const configPath = findup('config.yaml')
+const config = configPath ? yaml.parse(fs.readFileSync(configPath, 'utf-8')) : {IP: 'localhost', PORT: 8086}
+
 var argv = require('yargs/yargs')(process.argv.slice(2))
-    .usage('Usage: node $0 -l [listen_port] -i [influx_ip] -P [influx_port]')
-    .alias('i', 'ip')
-    .alias('P', 'port')
-    .demandOption(['i', 'P'])
+    .usage('Usage: node $0 --config <conf-file> -l [api_port]')
+    .default('config', 'IP: localhost, PORT: 8086')
     .default('l', 5000)
+    .config(config)
     .argv;
 
 module.exports = { argv }
 
 const weather = require('./routes/weather')
-
-//console.log(`IP: ${argv.i}, port: ${argv.P}, listener: ${argv.l}, username: ${argv.u}, password: ${argv.p}`)
 
 app.use(express.json())
 

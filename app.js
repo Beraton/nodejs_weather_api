@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const express = require('express')
 const findup = require('findup-sync')
 const fs = require('fs')

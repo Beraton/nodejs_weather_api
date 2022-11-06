@@ -9,6 +9,8 @@ IP:
   <IPv4_ADDR>
 PORT:
   <PORT>
+INFLUX_DATABSE:
+  <DATABASE_NAME>
 ```
 
 Otherwise, default values of will be used (IP: localost, PORT: 8086)
